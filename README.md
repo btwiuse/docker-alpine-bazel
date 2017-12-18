@@ -1,4 +1,4 @@
-# Docker bazel Alpine
+# Docker Alpine Bazel
 
 [![alpine](https://img.shields.io/badge/alpine-v3.6-blue.svg)](https://alpinelinux.org)
 [![bazel](https://img.shields.io/badge/bazel-v0.8.0-blue.svg)](https://bazel.build)
@@ -7,12 +7,12 @@ Provides a Docker image with Bazel build software running over Alpine Linux.
 
 ## Installation
 ```
-$ docker pull alexiskofman/bazel-alpine:latest
+$ docker pull alexiskofman/alpine-bazel:3.6_0.8.0
 ```
 
 Then enjoy what's inside:
 ```
-$ docker run --rm -ti alexiskofman/bazel-alpine:latest bazel version
+$ docker run --rm -t alexiskofman/alpine-bazel:latest bazel version
 ```
 
 # License

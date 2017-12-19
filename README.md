@@ -12,7 +12,7 @@ $ docker pull alexiskofman/alpine-bazel:3.6_0.8.0
 
 Then enjoy what's inside:
 ```
-$ docker run --rm -t alexiskofman/alpine-bazel:latest bazel version
+$ docker run --rm -t alexiskofman/alpine-bazel:3.6_0.8.0 bazel version
 ```
 
 # License

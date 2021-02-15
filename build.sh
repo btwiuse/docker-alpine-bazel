@@ -10,6 +10,20 @@ DIR=$(mktemp -d) && cd ${DIR}
 curl -LO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
 curl -sL  https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip.sha256 | sha256sum --check
 unzip -q -o bazel-${BAZEL_VERSION}-dist.zip
+# https://github.com/bazelbuild/bazel/issues/12460
+# https://stackoverflow.com/questions/41446716/use-temp-failure-retry-on-osx/41446972#41446972
+cat >>./src/main/tools/linux-sandbox-pid1.h <<EOF
+#ifndef TEMP_FAILURE_RETRY
+#define TEMP_FAILURE_RETRY(exp)            \
+  ({                                       \
+    decltype(exp) _rc;                     \
+    do {                                   \
+      _rc = (exp);                         \
+    } while (_rc == -1 && errno == EINTR); \
+    _rc;                                   \
+  })
+#endif
+EOF
 # https://qiita.com/naka345/items/e8a052af0834cb9e581c
 sed -i -e 's/-classpath/-J-Xmx6096m -J-Xms128m -classpath/g' scripts/bootstrap/compile.sh
 # https://docs.bazel.build/versions/master/install-compile-source.html#bootstrap-bazel

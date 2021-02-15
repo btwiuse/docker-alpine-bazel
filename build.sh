@@ -8,8 +8,8 @@ apk add --no-cache --virtual build-dependencies bash curl coreutils gcc g++ linu
 
 DIR=$(mktemp -d) && cd ${DIR}
 # curl -LO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
-wget --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
-curl -sL  https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip.sha256 | sha256sum --check
+wget https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
+curl -sL https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip.sha256 | sha256sum --check
 unzip -q -o bazel-${BAZEL_VERSION}-dist.zip
 # https://github.com/bazelbuild/bazel/issues/12460
 # https://stackoverflow.com/questions/41446716/use-temp-failure-retry-on-osx/41446972#41446972

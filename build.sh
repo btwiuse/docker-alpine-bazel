@@ -7,7 +7,7 @@ apk add --no-cache libstdc++ openjdk8
 apk add --no-cache --virtual build-dependencies bash curl coreutils gcc g++ linux-headers unzip zip
 
 DIR=$(mktemp -d) && cd ${DIR}
-curl -sLO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
+curl -LO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
 curl -sL  https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip.sha256 | sha256sum --check
 unzip -q -o bazel-${BAZEL_VERSION}-dist.zip
 # https://qiita.com/naka345/items/e8a052af0834cb9e581c

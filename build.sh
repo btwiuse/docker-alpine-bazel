@@ -8,6 +8,7 @@ install_glibc(){
   wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-dev-2.32-r0.apk
   wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-i18n-2.32-r0.apk
   apk add *.apk --allow-untrusted
+  rm -vf *.apk
 }
 
 # apk update && apk upgrade
@@ -15,6 +16,7 @@ apk add --no-cache libstdc++ openjdk8
 apk add --no-cache --virtual build-dependencies bash curl coreutils gcc g++ linux-headers unzip zip
 apk add --no-cache python3 file patch git vim wget
 ln -sf python3 /usr/bin/python
+install_glibc
 
 DIR=$(mktemp -d) && cd ${DIR}
 # curl -LO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
@@ -40,7 +42,6 @@ sed -i -e 's/-classpath/-J-Xmx6096m -J-Xms128m -classpath/g' scripts/bootstrap/c
 # https://docs.bazel.build/versions/master/install-compile-source.html#bootstrap-bazel
 env EXTRA_BAZEL_ARGS="--host_javabase=@local_jdk//:jdk" ./compile.sh
 cp ${DIR}/output/bazel /usr/local/bin/
-install_glibc
 rm -rf ${DIR}
 
 # apk del build-dependencies

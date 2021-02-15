@@ -1,4 +1,4 @@
-FROM  alpine
+FROM frolvlad/alpine-glibc
 
 LABEL maintainer="Alexis Kofman <alexis.kofman@gmail.com>"
 

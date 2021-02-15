@@ -2,21 +2,11 @@
 
 set -e
 
-install_glibc(){
-  wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-2.32-r0.apk
-  wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-bin-2.32-r0.apk
-  wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-dev-2.32-r0.apk
-  wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.32-r0/glibc-i18n-2.32-r0.apk
-  apk add *.apk --allow-untrusted
-  rm -vf *.apk
-}
-
 # apk update && apk upgrade
 apk add --no-cache libstdc++ openjdk8
 apk add --no-cache --virtual build-dependencies bash curl coreutils gcc g++ linux-headers unzip zip
-apk add --no-cache python3 file patch git vim wget
+apk add --no-cache python3 file patch git vim wget make
 ln -sf python3 /usr/bin/python
-install_glibc
 
 DIR=$(mktemp -d) && cd ${DIR}
 # curl -LO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip

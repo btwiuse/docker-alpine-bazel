@@ -14,6 +14,7 @@ install_glibc(){
 apk add --no-cache libstdc++ openjdk8
 apk add --no-cache --virtual build-dependencies bash curl coreutils gcc g++ linux-headers unzip zip
 apk add --no-cache python3 file patch git vim wget
+ln -s python3 /usr/bin/python
 
 DIR=$(mktemp -d) && cd ${DIR}
 # curl -LO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip

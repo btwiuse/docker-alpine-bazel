@@ -2,12 +2,13 @@
 
 set -e
 
-apk update && apk upgrade
+# apk update && apk upgrade
 apk add --no-cache libstdc++ openjdk8
-apk add --no-cache --virtual build-dependencies bash curl coreutils gcc g++ linux-headers unzip zip
+apk add --no-cache --virtual build-dependencies bash curl coreutils gcc g++ linux-headers unzip zip wget
 
 DIR=$(mktemp -d) && cd ${DIR}
-curl -LO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
+# curl -LO --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
+wget --progress-bar https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip
 curl -sL  https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip.sha256 | sha256sum --check
 unzip -q -o bazel-${BAZEL_VERSION}-dist.zip
 # https://github.com/bazelbuild/bazel/issues/12460
